@@ -73,11 +73,18 @@ Git - это широко используемая распределённая 
     # Все файлы внутри .temp шифруем
     # .temp/** filter=git-crypt diff=git-crypt
 
-    #
+    #.gitattributes, .gitignore - служебные, not encrypted
     git add .gitattributes .temp/
     git commit -m "Add encrypted .temp folder"
+    git push
 
-    #.gitattributes, .gitignore - служебные, not encrypted
+    # теперь если запулить эту репу, то .temp будет зашифрован
+    # получить ключ, чтобы прочитать
+    git-crypt export-key ~/Desktop/git_secret.key
+    
+    # рассекретить их на другом устройстве
+    git-crypt unlock /path/to/key/git_secret.key
+
 ```
 
 </details>
