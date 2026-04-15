@@ -61,14 +61,23 @@ Git - это широко используемая распределённая 
     # Удаляем всю папку из индекса(прекращаем отслеживать)
     git rm -r --cached .temp
 
-    # С новым сообщением
-    git commit --amend -m "Это хз"
+    # Устанавливаем утилиту на компьютер
+    sudo apt install git-crypt
+    # or
+    brew install git-crypt
 
-    # Или без изменения сообщения (самый удобный вариант)
-    git commit --amend --no-edit
+    # Инициализируем в корне проекта
+    git-crypt init
 
-    # Запушьте изменения (если коммит уже был отправлен)
-    git push --force origin main
+    # Настраиваем правила, что нужно шифровать в корневом файле .gitattributes
+    # Все файлы внутри .temp шифруем
+    # .temp/** filter=git-crypt diff=git-crypt
+
+    #
+    git add .gitattributes .temp/
+    git commit -m "Add encrypted .temp folder"
+
+    #.gitattributes, .gitignore - служебные, not encrypted
 ```
 
 </details>
