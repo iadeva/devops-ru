@@ -1,0 +1,3 @@
+
+# Все файлы внутри .temp шифровать через git-crypt»
+.temp/** filter=git-crypt diff=git-crypt
